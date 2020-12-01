@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="2e9e2e23-245b-41c4-9578-7626ca85886e">
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="assignment1-muleFlow" doc:id="8011e2f8-cec4-4cd1-9d36-7a728da03976" >
+		<http:listener doc:name="GET /id" doc:id="ccedbcef-639d-4507-9b9e-a4928dbf697f" config-ref="HTTP_Listener_config" path="/id"/>
+		<set-payload value="#['Welcome!'++ (attributes.queryParams.firstName) as String ++ (attributes.queryParams.lastName as String)++'.'++'Your customer id is:'++ (attributes.queryParams.cid as String)]" doc:name="Set Payload" doc:id="d5f05cdf-ca87-4648-94e5-ad61297a9800" />
+		<logger level="INFO" doc:name="Logger" doc:id="5fd0e1c8-a9c3-4e1e-b6af-f7d8ff3d5f53" />
+	</flow>
+</mule>
