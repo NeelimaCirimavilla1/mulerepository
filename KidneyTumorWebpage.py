@@ -42,7 +42,6 @@ with st.container():
     st.header("Upload Images to Check for Kidney Tumor")
 
 
-@st.cache_data(allow_output_mutation=True)
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
